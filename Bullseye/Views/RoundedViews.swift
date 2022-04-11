@@ -58,12 +58,31 @@ struct RoundedRectTextView: View {
   }
 }
 
+struct RoundedTextView: View {
+  let text: String
+  
+  var body: some View {
+    Text(text)
+      .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+      .foregroundColor(Color("TextColor"))
+      .frame(width: Constants.General.roundedViewLength, height: Constants.General.roundedViewLength)
+      .overlay(
+        Circle()
+          .strokeBorder(
+            Color("LeaderboardRowColor"),
+            lineWidth: 2.0
+          )
+      )
+  }
+}
+
 struct PreviewView: View {
   var body: some View {
     VStack {
       RoundedImageViewStroked(systemName: "arrow.counterclockwise")
       RoundedImageViewFilled(systemName: "list.dash")
       RoundedRectTextView(text: "100")
+      RoundedTextView(text: "1")
     }
   }
 }
